@@ -1,30 +1,6 @@
 baseURL = 'http://example.org/'
-#languageCode = 'en-us'
-title = 'Devops'
-theme = 'docsy'
-# Lnaguage settings
-contentDir = 'content/ru'
-defaultContentLanguage = 'ru'
+languageCode = 'en-us'
+title = 'DevOps notes'
+theme = "paper"
 
-
-[outputs]
-section = [ "HTML", "RSS", "print" ]
-[outputFormats.PRINT]
-baseName = "index"
-isHTML = true
-mediaType = "text/html"
-path = "printview"
-permalinkable = false
-
-[Menu]
- [[menu.Main]]
-  identifier = "home"
-  name = "home"
-  url = "/blog"
-  weight = 1
- [[menu.Main]]
-  identifier = "docs"
-  name = "Документация"
-  url = "/docs"
-  weight = 2
 
