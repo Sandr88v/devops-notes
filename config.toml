@@ -1,10 +1,15 @@
 baseURL = 'http://example.org/'
 #languageCode = 'en-us'
 title = 'Devops'
-theme = 'docsy'
+#theme = 'docsy'
 # Lnaguage settings
 contentDir = 'content/ru'
 defaultContentLanguage = 'ru'
+
+[module]
+replacements = "github.com/FortAwesome/Font-Awesome -> ., github.com/twbs/bootstrap -> ."
+[[module.imports]]
+path = "docsy"
 
 [outputs]
 section = [ "HTML", "RSS", "print" ]
@@ -26,3 +31,4 @@ permalinkable = false
   name = "Документация"
   url = "/docs"
   weight = 2
+
