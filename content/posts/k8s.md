@@ -49,7 +49,7 @@ kubectl top pods -A
 ```
 Оценив общее состояние кластера, перейдем к просмотру состояния всех компонентов: здесь может вскрыться очень-очень много интересного.
 
-Оцениваем состояние компонентов k8s
+## Оцениваем состояние компонентов k8s
 
 1. Посмотрим на работу сердца нашего кластера – etcd. Для этого обратимся к логам пода (или юнита):
 
@@ -104,6 +104,64 @@ calicoctl get nodes
 calicoctl get BGPpers
 ```
 Где-нибудь здесь при желании можно измерить скорость сети между самими подами, к примеру, утилитой iperf. В том числе это касается подов, расположенных на разных машинах.
+
+##Тестирование кластера на соответствие требованиям CNCF
+
+Стандарт CNCF позволяет обеспечить ожидаемое поведение от кластера.
+
+Определим, имеет ли наш кластер стандартные настройки. Для этого обратимся к утилите Sonobuoy: мы используем ее для тестирования своих сборок k8s.
+
+На данном этапе могут выясниться недостающие параметры запуска компонентов, функциональные проблемы кластера или невозможность обработать действия в самом кластере.
+
+1. Важно: определяемся с версией, которая поддерживает релиз нашего кластера. В данном случае скачаем последнюю версию программы
+
+https://github.com/vmware-tanzu/sonobuoy/releases.
+
+2. Запустим проверку кластера стандартными тестами:
+```
+sonobuoy run
+```
+Если хотим  ожидать завершения, можно использовать ключ --wait. Проверка кластера занимает около полутора часов.
+
+Смотреть прогресс тестирования можно командой:
+```
+sonobuoy status
+```
+3. По завершении скачиваем архив с отчетом и смотрим ошибки:
+
+```
+results=$(sonobuoy retrieve)
+sonobuoy results $results
+```
+Вот один из примеров того, с чем столкнулись мы:
+```
+[sig-api-machinery] AdmissionWebhook [Privileged:ClusterAdmin] should be able to deny attaching pod [Conformance]
+[sig-api-machinery] AdmissionWebhook [Privileged:ClusterAdmin] should deny crd creation [Conformance]
+[sig-api-machinery] CustomResourcePublishOpenAPI [Privileged:ClusterAdmin] works for CRD with validation schema [Conformance]
+[sig-api-machinery] CustomResourcePublishOpenAPI [Privileged:ClusterAdmin] works for CRD without validation schema [Conformance]
+[sig-cli] Kubectl client Guestbook application should create and stop a working application  [Conformance]
+[sig-network] DNS should provide DNS for pods for Subdomain [Conformance]
+[sig-network] Ingress API should support creating Ingress API operations [Conformance]
+```
+Следующей командой можно более подробно посмотреть на проблемы:
+```
+sonobuoy results $results --mode detailed | jq '. | select(.status == "failed") | .details'
+```
+Для соответствия рекомендациям нам пришлось поправить параметры запуска компонентов k8s, внести изменения в настройку ingress и API кластера.
+
+После устранения неисправности, чтобы не ждать прохождения полного теста, можно запустить только конкретный:
+```
+sonobuoy run --e2e-focus "Ingress API should support creating Ingress API operations" --e2e-skip "" --wait
+```
+
+Теперь у нас на руках есть базовое представление о состоянии нашего кластера. Дальше при желании можно углубиться в работу самих компонентов, обратиться к метрикам из prometheus-operator, устроить тест etcd, балансировщика и проверить iops на сторадже. Главное – четко понимать, что вы хотите получить в итоге.
+
+
+
+
+
+
+
 
 
 
