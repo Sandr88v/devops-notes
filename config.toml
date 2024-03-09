@@ -1,7 +1,7 @@
 baseURL = 'http://example.org/'
 #languageCode = 'en-us'
 title = 'Devops'
-#theme = 'docsy'
+theme = 'docsy'
 # Lnaguage settings
 contentDir = 'content/ru'
 defaultContentLanguage = 'ru'
