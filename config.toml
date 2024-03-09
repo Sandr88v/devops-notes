@@ -5,6 +5,7 @@ theme = 'docsy'
 # Lnaguage settings
 contentDir = 'content/ru'
 defaultContentLanguage = 'ru'
+
 [outputs]
 section = [ "HTML", "RSS", "print" ]
 [outputFormats.PRINT]
@@ -13,6 +14,7 @@ isHTML = true
 mediaType = "text/html"
 path = "printview"
 permalinkable = false
+
 [Menu]
  [[menu.Main]]
   identifier = "home"
