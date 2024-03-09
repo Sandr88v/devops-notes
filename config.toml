@@ -8,8 +8,6 @@ defaultContentLanguage = 'ru'
 
 [module]
 replacements = "github.com/FortAwesome/Font-Awesome -> ., github.com/twbs/bootstrap -> ."
-[[module.imports]]
-path = "docsy"
 
 [outputs]
 section = [ "HTML", "RSS", "print" ]
