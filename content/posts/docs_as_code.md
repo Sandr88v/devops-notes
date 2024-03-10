@@ -1,13 +1,13 @@
 ---
 title: "Docs As Code: Документация как Код"
 date: 2024-03-10T19:11:16+03:00
-slug: hugo
+slug: docs
 aliases:
-  - hugo
+  - docs
 weight: 10010
 toc_hide: true
 tags:
-  - hugo
+  - docs
   - linux
 ---
 
