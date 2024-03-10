@@ -37,4 +37,6 @@ hugo new site MyFreshWebsite --format yaml
 После этого Hugo создаст структуру каталогов для вашего сайта.
 
 Примечание:
-- Старые версии Hugo могут не поддерживать --format yaml
+```
+Старые версии Hugo могут не поддерживать --format yaml
+```
