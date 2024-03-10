@@ -2,3 +2,31 @@ baseURL: /
 title: DevOps
 theme: [paper]
 
+menu:
+  main:
+    - name: Project
+      weight: 19
+      url: https://github.com/Sandr88v/devops-notes
+
+params:
+  time_format_blog: Monday, January 02, 2006
+  time_format_default: January 2, 2006
+  #github_repo: 
+  #github_project_repo: 
+  #github_branch: 'main'
+  # color style
+  color:  light
+  drawio:
+    enable: true
+  offlineSearch: true
+  offlineSearchSummaryLength: 70
+  offlineSearchMaxResults: 10
+  prism_syntax_highlighting: false
+  ui:
+    sidebar_menu_compact: true
+    sidebar_menu_foldable: true
+    sidebar_cache_limit: 10
+    breadcrumb_disable: false
+    sidebar_search_disable: false
+    readingtime:
+      enable: false
