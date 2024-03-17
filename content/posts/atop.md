@@ -1,9 +1,9 @@
 ---
 title: "Atop - анализ загрузки ресурсов"
 date: 2024-03-17T15:07:20+03:00
-slug: bmon
+slug: atop
 aliases:
-  - bmon
+  - atop
 weight: 10010
 toc_hide: true
 tags:
