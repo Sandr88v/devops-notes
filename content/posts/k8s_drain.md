@@ -3,11 +3,11 @@ title: "Корректное завершение работы pod’ов в Kub
 date: 2024-04-22T22:31:36+03:00
 slug: k8s_drain
 aliases:
-  - k8s
+  - k8s_drain
 weight: 10010
 toc_hide: true
 tags:
-  - k8s_drain
+  - k8s
 ---
 
 ## Ввод ноды в режим обслуживания
